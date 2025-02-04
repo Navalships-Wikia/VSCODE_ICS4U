@@ -39,8 +39,21 @@ while (i <= num3) {
     cout<<"\n";
     i++;
 }
+cout<<"\n";
+
 
 // 2c
+int num4, k;
 
+cout<<"Enter a number: ";
+cin>>num4;
+
+for (k=num4;  k>1;) {
+    if (k*k<=num4) {
+        cout<<k*k<<" is a perfect square."<<endl;
+    }
+}
+cout<<"\n";
+return 3;
 }
 

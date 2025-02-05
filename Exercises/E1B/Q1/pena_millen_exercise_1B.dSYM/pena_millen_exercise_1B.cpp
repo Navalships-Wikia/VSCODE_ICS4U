@@ -20,7 +20,7 @@ int main() {
             phoneNumber[i]=phoneNumber[i]-32;
         }
 
-        else if (phoneNumber[i]>='A' && phoneNumber[i]<='C'){
+        if (phoneNumber[i]>='A' && phoneNumber[i]<='C'){
             cout<<"2";
         }
         else if (phoneNumber[i]>='D' && phoneNumber[i]<='F'){
@@ -48,7 +48,7 @@ int main() {
             cout<<phoneNumber[i];
         }
     }
-    cout,,"\n";
+    cout<<"\n";
     return 0;
 }
 

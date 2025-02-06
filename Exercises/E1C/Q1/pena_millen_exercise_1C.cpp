@@ -11,14 +11,6 @@ void run(){
     cout<<"See how they run\n";
 }
 
-// 2. Func
-int age(int a){
-    int age;
-    cout<<"Enter your age: ";
-    cin>>age;
-    a = age;
-}
-
 int main(){
 
     // 1.

@@ -1,2 +1,2 @@
 # VSCODE_ICS4U
-Repo for Grade 12 studies In the ICS4U course.
+Repo for Grade 12 studies in the ICS4U course. Inlucdes Exercises, Projects and Lessons.

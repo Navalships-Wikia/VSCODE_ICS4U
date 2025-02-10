@@ -25,7 +25,7 @@ int main(){
     string name = "Kwan", answer;
     int phonenumber = 416123445;
     int age = 99;
-    int x=1, y=2, z=3;
+    int x = 1, y = 2, z = 3;
 
     // message(phonenumber);
     // message(name);

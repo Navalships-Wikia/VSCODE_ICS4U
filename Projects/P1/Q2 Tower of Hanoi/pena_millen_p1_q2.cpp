@@ -1,8 +1,7 @@
 #include <iostream>
+using namespace std;
 
 void moveTower(int number, int start, int end);
-
-using namespace std;
 
 int main(){
 

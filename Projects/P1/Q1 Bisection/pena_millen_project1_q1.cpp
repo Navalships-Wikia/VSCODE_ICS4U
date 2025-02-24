@@ -68,7 +68,7 @@ int main()
     }
 
     // Caller for recursive bisection
-    if (a1!=0 &&a2!=0)
+    if (a1!=0&&a2!=0)
         {
         answer=bisection(a, b, c, d, xLeft, xRight, epsilon);
         cout<<"The x-intercept is at: "<<answer<<endl;
@@ -87,5 +87,16 @@ float calculation(int a, int b, int c, int d, float e)
 // Function to calculate the bisection recursively
 float bisection(int a, int b, int c, int d, float e, float f, float g)
 {
-    
+    float mid=(e+f)/2;
+    float valueMid=calculation(a, b, c, d, mid);
+
+    if (abs(f-e)<g) {
+        return mid;
+    } else {
+        if (calculation(a, b, c, d, e)*valueMid<0) {
+            return bisection(a, b, c, d, e, mid, g);
+        } else {
+            return bisection(a, b, c, d, mid, f, g);
+        }
+    }
 }

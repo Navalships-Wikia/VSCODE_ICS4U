@@ -1,0 +1,27 @@
+LINEAR SEARCH
+Best case is O(1)
+Worst case is O(n)
+
+BINARY SEARCH
+Best case is O(1)
+Worst case is O(log2n)
+
+The proof of binary search time complexity can be found here, although this is informal:
+https://stackoverflow.com/questions/815079/how-to-calculate-binary-search-complexity
+
+With linear searching, the items do not have to be sorted which is consideredd a pro
+however, it is considered slow
+
+With binary searching, it is much faster than linear, but the disadvantage with this is
+that items will need to first be sorted before performine the search.
+
+It can be worthwhile to sort before searching
+
+
+SORTING
+
+Possible sort questions:
+1. for each run, if nothing changes, does it mean that the sorting is complete? Answer: No
+2. Once you insert the item, is said item in the final position? Answer: No
+3. How many runs do I need? Answer: (n-1)
+

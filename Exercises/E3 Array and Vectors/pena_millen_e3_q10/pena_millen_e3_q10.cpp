@@ -30,13 +30,37 @@ int main()
         cout<<array[i]<<" ";
     }
     cout<<endl;
-
-    // Ask user whether if they want to delete a number from the array
+    
+    // Ask user whether if they want to ADD a number from the array
     char choice;
-    cout<<"\nDo you want to delete a number from the array? (Y/N): ";
+    cout<<"\nDo you want to ADD or DELETE a number from the array? (A for Add or D for Delete): ";
     cin>>choice;
 
-    if (choice=='Y' || choice=='y')
+    if (choice=='A' || choice=='a')
+    {
+        int num;
+
+        // Constantly prompt user to enter a nummber until it is valid
+        cout<<"Enter the number you want to add: ";
+        cin>>num;
+    
+        // add the number in the array
+        array[size]=num;
+        size++;
+
+        // Sort the array again
+        insertion_sort(array, size);
+        cout<<endl;
+
+        // Output of updated array
+        cout<<"Updated array: ";
+        for(int i=0; i<size; i++)
+        {
+            cout<<array[i]<<" ";
+        }
+        cout<<endl;
+    }
+    else if (choice=='D' || choice=='d')
     {
         int num;
         int index;
@@ -56,29 +80,36 @@ int main()
             }
         } while (index==-1);
 
-        // delete chosen number
-        for (int i=search(array, size, num); i<size; i++)
+        // delete all instances of the chosen number
+        int newSize = size;
+        for (int i=0; i<newSize;)
         {
-            array[i]=array[i+1];
+            if (array[i]==num)
+            {
+                for (int j=i; j<newSize-1; j++)
+                {
+                    array[j]=array[j+1];
+                }
+                newSize--;
+            }
+            else
+            {
+                i++;
+            }
         }
-        size--;
+        size=newSize;
+
+        cout<<"Updated array: ";
+        for (int i=0; i<size; i++)
+        {
+            cout<<array[i]<<" ";
+        }
+        cout<<endl;
     }
-    // If user says no, then exit.
-    else if (choice=='N' || choice=='n')
-    {
-        cout<<"No number will be deleted, Goodbye"<<endl<<endl;
+    else{
+         cout<<endl;
         return 0;
     }
-
-    cout<<endl;
-
-    // Output of changed array
-    cout<<"Updated array: ";
-    for (int i=0; i<size; i++)
-    {
-        cout<<array[i]<<" ";
-    }
-    cout<<endl; 
 
     cout<<endl;
     return 0;

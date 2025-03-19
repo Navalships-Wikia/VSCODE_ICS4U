@@ -81,7 +81,7 @@ int main()
         } while (index==-1);
 
         // delete all instances of the chosen number
-        int newSize = size;
+        int newSize=size;
         for (int i=0; i<newSize;)
         {
             if (array[i]==num)
@@ -99,12 +99,23 @@ int main()
         }
         size=newSize;
 
-        cout<<"Updated array: ";
-        for (int i=0; i<size; i++)
+        // Check if array is empty before updating output
+        if (size==0)
         {
-            cout<<array[i]<<" ";
+            cout<<"Array is empty."<<endl;
+
+            cout<<endl;
+            return 0;
         }
-        cout<<endl;
+        else 
+        {
+            cout<<"Updated array: ";
+            for (int i=0; i<size; i++)
+            {
+                cout<<array[i]<<" ";
+            }
+            cout<<endl;
+        }
     }
     else{
          cout<<endl;

@@ -83,23 +83,12 @@ int main()
         // delete all instances of the chosen number
         array.erase(remove(array.begin(), array.end(), num), array.end());
 
-        // Check if array is empty before updating output
-        if (array.size()==0)
+        cout<<"Updated array: ";
+        for (int i=0; i<array.size(); i++)
         {
-            cout<<"Array is empty."<<endl;
-
-            cout<<endl;
-            return 0;
+            cout<<array[i]<<" ";
         }
-        else 
-        {
-            cout<<"Updated array: ";
-            for (int i=0; i<array.size(); i++)
-            {
-                cout<<array[i]<<" ";
-            }
-            cout<<endl;
-        }
+        cout<<endl;
     }
     else{
          cout<<endl;

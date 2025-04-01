@@ -7,10 +7,6 @@ int *point_to_value();
 int main()
 {
     // New and Delete
-    
-    // int *p;
-    // p=new int(5);
-    // cout<<*p<<endl;
 
     int *p;
     p=point_to_value();
@@ -21,6 +17,7 @@ int main()
 }
 int *point_to_value()
 {
-    int x=32;
-    return &x;
+    int *a;
+    a=new int(32); // bypass the local restriction
+    return a;
 }

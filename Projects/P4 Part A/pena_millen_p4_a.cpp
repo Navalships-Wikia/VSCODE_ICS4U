@@ -1,121 +1,116 @@
 #include <iostream>
-#include <string>
+#include <cmath>
+#include <iomanip>
+#define pi 3.14159265358979323846
 using namespace std;
 
-struct tml {
-    string last_name;
-    string first_name;
-    int jersey_number;
-    int age;
-    tml *next;
+// Define the structures
+struct cartesian 
+{
+    double x, y;
 };
 
-tml *add_to_list(tml *list, string ln, string fn, int jn, int agenumber);
-tml *delete_from_list(tml *list, int jn);
-
-void printing_list(tml *list);
-
-int main()
+struct polar 
 {
-int number=1, a, jerseynumber;
-string lastname, firstname;
-char choice;
-tml *first=NULL;
+    double radius, degree;
+};
 
-    while (number!=9){
-        cout<<"\n -- Welcome to Toronto Maple Leafs Database! --\n";
+// Function declarations
+polar to_polar(cartesian point);
+cartesian to_cartesian(polar point);
 
-        cout<<"\nEnter 1 to add new player";
-        cout<<"\nEnter 2 to delete player";
-        cout<<"\nEnter 3 to edit player";
-        cout<<"\nEnter 4 to print player's last name in ascending order";
-        cout<<"\nEnter 5 to print player's first name in ascending order";
-        cout<<"\nEnter 6 to print player's jersey number in ascending order";
-        cout<<"\nEnter 7 to print players' age in ascending order";
-        cout<<"\nEnter 8 to print player's list in the order as is";
-        cout<<"\nEnter 9 to exit the program";
-        cout<<"\nEnter your choice: ";
-        cin>>number;
+ostream& operator<<(ostream& os, const cartesian& point);
+ostream& operator<<(ostream& os, const polar& point);
 
-        if (number==1)
+int main() 
+{
+    int choice;
+    cartesian a;
+    polar b;
+
+    cout<<"Input 1 to convert Cartesian to Polar"<<endl;
+    cout<<"Input 2 to convert Polar to Cartesian"<<endl;
+    cout<<"Input any other input to exit: ";
+
+    while(cin>>choice)
+    {   
+        // Check if the input is valid
+        if (choice!=1 && choice!=2)
         {
-            cout<<"Enter the player's last name: ";
-            cin>>lastname;
-            cout<<"Enter the player's first name: ";
-            cin>>firstname;
-            cout<<"Enter the player's jersey number: ";
-            cin>>jerseynumber;
-            cout<<"Enter the player's age: ";
-            cin>>a;
+            break;
+        }
 
-            first=add_to_list(first, lastname, firstname, jerseynumber, a);
-        }
-        else if (number==2)
+        // Convert Cartesian to Polar
+        else if (choice==1)
         {
-            cout<<"Enter A if you want to enter the full name of the player to Delete: ";
-            cout<<"\nor B if you want to enter the jersey number of the player to Delete: ";
-            cin>>choice;
-            if (choice=='b')
-            {
-                cout<<"Enter the jersey number: ";
-                cin>>jerseynumber;
-                first=delete_from_list(first, jerseynumber);
-            }
+            cout<<endl;
+
+            cout<<"Enter the x-coordinate: ";
+            cin>>a.x;
+
+            cout<<"Enter the y-coordinate: ";
+            cin>>a.y;
+
+            b = to_polar(a);
+            cout<<endl;
+
+            cout<<b;
+            cout<<endl;
         }
-        else if (number==8)
+
+        // Convert Polar to Cartesian
+        else if (choice==2)
         {
-            printing_list(first);
+            cout<<endl;
+
+            cout<<"Enter the raidus: ";
+            cin>>b.radius;
+
+            cout<<"Enter the angle in degree: ";
+            cin>>b.degree;
+
+            a = to_cartesian(b);
+            cout<<endl;
+
+            cout<<a;
+            cout<<endl;
         }
+
+        // repeat untill the user inputs any other input
+        cout<<"Input 1 to convert Cartesian to Polar"<<endl;
+        cout<<"Input 2 to convert Polar to Cartesian"<<endl;
+        cout<<"Input any other input to exit: ";
     }
-return 0;
+    cout<<endl;
+    return 0;
 }
 
-tml *add_to_list(tml *list, string ln, string fn, int jn, int agenumber)
+// Converters
+polar to_polar(cartesian point) 
 {
-    tml *new_node;
-    new_node=new tml;
-    new_node->last_name=ln;
-    new_node->first_name=fn;
-    new_node->jersey_number=jn;
-    new_node->age=agenumber;
-    new_node->next=list;
-    return new_node; //You cannot return a local address, but the command "new" is different
-    //The action with "new" and "delete" is part of the topic named "heap"
-    //Please read https://www.learncpp.com/cpp-tutorial/79-the-stack-and-the-heap/ for reference (heap only)
-}
-tml *delete_from_list(tml *list, int jn)
-{
-    tml *cur, *prev;
-
-    for (cur=list, prev=NULL; cur!=NULL && cur->jersey_number!=jn; prev=cur, cur=cur->next);
-
-    if (cur==NULL)
-    {
-        cout<<"The player with this jersey number doesn't exist. Delete unsuccessful"<<endl;
-        return list;
-    }
-    if (prev==NULL)
-    {
-        list=list->next;
-    }
-    else
-        prev->next=cur->next;
-
-    delete cur;
-    cout<<"Delete complete"<<endl;
-    return list;
+    polar result;
+    result.radius = sqrt(point.x * point.x + point.y * point.y);
+    result.degree = atan2(point.y, point.x) * (180.0 / pi);
+    return result;
 }
 
-void printing_list(tml *list)
+cartesian to_cartesian(polar point) 
 {
+    cartesian result;
+    double radian = point.degree * (pi / 180.0);
+    result.x = point.radius * cos(radian);
+    result.y = point.radius * sin(radian);
+    return result;
+}
 
-    for (; list!=NULL; list=list->next)
-    {
-        cout<<"Last name: "<<list->last_name<<endl;
-        cout<<"First name: "<<list->first_name<<endl;
-        cout<<"Jersey Number: "<<list->jersey_number<<endl;
-        cout<<"Age: "<<list->age<<endl;
-    }
-
-
+// outputters
+ostream& operator<<(ostream& os, const cartesian& point) 
+{
+    os<<"Cartesian Coordinate: ("<<point.x<<", "<<point.y<<")"<< endl;
+    return os;
+}
+ostream& operator<<(ostream& os, const polar& point) 
+{
+    os<<"Polar Coordinate: (Radius: "<<point.radius<<", Angle: "<<point.degree<<" degrees)"<<endl;
+    return os;
 }

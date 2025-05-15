@@ -67,9 +67,11 @@ int main()
     cout<<c4<<endl;
     c4/=x;
     cout<<c4<<endl;
+
     //comparison
     cout<<"comparison"<<endl;
     mycomplex c8=mycomplex(9, 7);
+    
     if (c2==c8)
     {
         cout<<c2<<" and "<<c8<<" are the same"<<endl;

@@ -8,7 +8,9 @@
             "args": [
                 "build",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary",
+                "main.cpp",
+                "complex_component.cpp"
             ],
             "group": "build",
             "presentation": {

@@ -22,7 +22,7 @@ int main()
 
     while(cin>>content)
     {
-        p=adding(p, content); // Backward
+        // p=adding(p, content); // Backward
         p=adding2(p, content); // Forward
     }
     
@@ -112,7 +112,7 @@ our_array *deleting(our_array *a, float content)
     while (current != NULL)
     {
         if (current->number == content)
-        {
+        {   
             if (previous == NULL)
             {
                 a = current->next; // Deleting the first node
